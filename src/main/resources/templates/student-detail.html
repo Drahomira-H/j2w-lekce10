@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Informace o studentovi</title>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/normalize.css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" href="/css/skeleton.css" th:href="@{/css/skeleton.css}">
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+    <link rel="icon" type="image/png" href="/images/favicon.png" th:href="@{/images/favicon.png}">
+</head>
+<body>
+<main class="container">
+    <h1>Informace o studentovi</h1>
+    <table class="u-full-width">
+        <thead>
+        <tr>
+            <th>Jméno a příjmení</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a th:text="${student.celeJmeno}" class="button">Studenti</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="u-full-width">
+        <thead>
+        <tr>
+            <th>Třída</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a th:href="@{/trida/{nazev}(nazev=${student.trida.nazev})}" th:text="${student.trida}" class="button">třída</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="class-list">
+        <thead>
+        <tr>
+            <th>Rodiče</th>
+        </tr>
+        <tr>
+            <th>Jméno a příjmení</th>
+            <th>E-mail</th>
+            <th>Telefon</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rodic: ${student.rodice}">
+            <td>
+                <a class="button"
+                   th:text="${rodic.celeJmeno}">jméno a příjmení rodiče</a>
+            </td>
+            <td>
+                <span th:unless="${#strings.isEmpty(rodic.email)}" th:text="${rodic.email}">email </span>
+                <span th:if="${#strings.isEmpty(rodic.email)}">nevyplněno</span>
+            </td>
+            <td>
+                <span th:unless="${#strings.isEmpty(rodic.telefon)}" th:text="${rodic.telefon}">telefon</span>
+                <span th:if="${#strings.isEmpty(rodic.telefon)}">nevyplněno</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav>
+        <div class="controls">
+            <a href="/" class="button">Zpět na seznam tříd</a>
+        </div>
+    </nav>
+</main>
+</body>
+</html>

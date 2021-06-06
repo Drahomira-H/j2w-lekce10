@@ -16,75 +16,79 @@ import java.util.Set;
  */
 @Entity
 public class Rodic {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  private String jmeno;
-  private String prijmeni;
-  private String email;
-  private String telefon;
+    private String jmeno;
+    private String prijmeni;
+    private String email;
+    private String telefon;
 
-  @ManyToMany
-  @JoinTable(
-          name = "student_rodic",
-          joinColumns = @JoinColumn(name = "rodic_id"),
-          inverseJoinColumns = @JoinColumn(name = "student_id")
-  )
-  @OrderBy(value="prijmeni, jmeno")
-  private List<Student> deti;
+    @ManyToMany
+    @JoinTable(
+            name = "student_rodic",
+            joinColumns = @JoinColumn(name = "rodic_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    @OrderBy(value = "prijmeni, jmeno")
+    private List<Student> deti;
 
-  public Integer getId() {
-    return id;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public String getJmeno() {
-    return jmeno;
-  }
+    public String getJmeno() {
+        return jmeno;
+    }
 
-  public void setJmeno(String jmeno) {
-    this.jmeno = jmeno;
-  }
+    public void setJmeno(String jmeno) {
+        this.jmeno = jmeno;
+    }
 
-  public String getPrijmeni() {
-    return prijmeni;
-  }
+    public String getPrijmeni() {
+        return prijmeni;
+    }
 
-  public void setPrijmeni(String prijmeni) {
-    this.prijmeni = prijmeni;
-  }
+    public void setPrijmeni(String prijmeni) {
+        this.prijmeni = prijmeni;
+    }
 
-  public String getEmail() {
-    return email;
-  }
+    public String getEmail() {
+        return email;
+    }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-  public String getTelefon() {
-    return telefon;
-  }
+    public String getTelefon() {
+        return telefon;
+    }
 
-  public void setTelefon(String telefon) {
-    this.telefon = telefon;
-  }
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
 
-  public List<Student> getDeti() {
-    return deti;
-  }
+    public List<Student> getDeti() {
+        return deti;
+    }
 
-  public void setDeti(List<Student> deti) {
-    this.deti = deti;
-  }
+    public void setDeti(List<Student> deti) {
+        this.deti = deti;
+    }
 
-  @Override
-  public String toString() {
-    return String.format("%s %s [%d]", jmeno, prijmeni, id);
-  }
+    public String getCeleJmeno() {
+        return String.format("%s %s", prijmeni, jmeno);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s [%d]", jmeno, prijmeni, id);
+    }
 
 }

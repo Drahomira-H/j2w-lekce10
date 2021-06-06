@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Informace o třídě</title>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/normalize.css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" href="/css/skeleton.css" th:href="@{/css/skeleton.css}">
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+    <link rel="icon" type="image/png" href="/images/favicon.png" th:href="@{/images/favicon.png}">
+</head>
+<body>
+<main class="container">
+    <h1 th:text="${'Informace o třídě ' + trida.nazev}">Informace o třídě</h1>
+    <table class="u-full-width">
+        <thead>
+        <tr>
+            <th>Třídní učitel</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><a th:text="${trida.tridniUcitel.celeJmeno}" class="button">Studenti</a>
+            </td>
+        </tr>
+        </tbody>
+        <nav>
+            <div class="controls">
+                <a href="/" class="button">Zpět na seznam tříd</a>
+            </div>
+        </nav>
+    </table>
+
+    <table class="u-full-width">
+        <thead>
+        <tr>
+            <th>Seznam studentů</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student: ${trida.studenti}">
+            <td><a th:text="${student.celeJmeno}" th:href="@{/student/{studentId}(studentId=${student.id})}"
+                   class="button">Studenti</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav>
+        <div class="controls">
+            <a href="/" class="button">Zpět na seznam tříd</a>
+        </div>
+    </nav>
+</main>
+</body>
+</html>
